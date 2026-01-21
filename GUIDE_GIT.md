@@ -181,3 +181,20 @@ Para listar projetos via terminal, você precisa instalar a ferramenta oficial d
   4. Clique em "Create".
   5. Agora tente o `git push` de novo.
 
+## 13. Curiosidade: Como ele sabe para onde enviar?
+"Se o nome da pasta não importa, como ele acerta o destino?"
+
+A mágica está num endereço salvo que chamamos de **remote**.
+Lá no começo, você rodou:
+```powershell
+git remote add origin https://github.com/DiegoSaggiorato/exe_generator.git
+```
+É **esse link** que manda. O Git pensa assim:
+1. Você diz "envia aí" (`git push`).
+2. Ele olha na configuração: "Quem é o `origin`?"
+3. Ele acha o link `https://github.com/.../exe_generator.git`.
+4. Ele envia para esse endereço, não importa se sua pasta chama `banana` ou `projeto`.
+
+Para ver para onde seu Git está apontando agora, digite:
+`git remote -v`
+
