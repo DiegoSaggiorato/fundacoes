@@ -181,6 +181,45 @@ Para listar projetos via terminal, você precisa instalar a ferramenta oficial d
   4. Clique em "Create".
   5. Agora tente o `git push` de novo.
 
+- **"error: src refspec main does not match any"**:
+  **Tradução:** "Você tentou enviar a caixa vazia."
+  Isso acontece quando você tenta dar `git push` **sem ter feito o commit antes**.
+  O Git não envia pastas vazias nem arquivos soltos.
+  **Solução:**
+  1. `git add .`
+  2. `git commit -m "primeiro commit"`
+  3. `git push`
+
+- **"error: remote origin already exists"**:
+  **Tradução:** "Já existe um link configurado aqui."
+  Você provavelmente está na pasta errada ou tentando adicionar um link novo numa pasta velha.
+  
+  **Opção A: Verifique onde você está**
+  Digite `dir` ou `ls` e veja se está na pasta certa do projeto.
+  
+  **Opção B: Trocar o link (Se você quiser mudar mesmo)**
+  Não use `add` (adicionar), use `set-url` (definir url):
+  `git remote set-url origin https://novo-link.com`
+
+- **"fatal: unable to access ... Could not resolve host: https"**:
+  **O Erro:** Você digitou `https://https://...` (duplicado).
+  Isso acontece quando você copia o link do navegador e escreve "https://" antes no comando.
+  **Correção:**
+  `git remote set-url origin https://github.com/SEU_USUARIO/SEU_REPO.git`
+
+- **"error: remote origin already exists"**:
+  **Tradução:** "Já existe um link (origin) configurado."
+  Você não pode adicionar dois "origins". Você deve **trocar** o existente.
+  **Comando para TROCAR o link:**
+  ```powershell
+  git remote set-url origin https://novo-link-correto.com
+  ```
+
+- **"fatal: unable to access ... Could not resolve host: https"**:
+  **O Erro:** Você digitou `https://https://...` (duplicado) sem querer.
+  **A Solução:** Use o comando de trocar (acima) para arrumar o link.
+  `git remote set-url origin https://github.com/SEU_USER/REPO.git`
+
 ## 13. Curiosidade: Como ele sabe para onde enviar?
 "Se o nome da pasta não importa, como ele acerta o destino?"
 
@@ -196,5 +235,31 @@ git remote add origin https://github.com/DiegoSaggiorato/exe_generator.git
 4. Ele envia para esse endereço, não importa se sua pasta chama `banana` ou `projeto`.
 
 Para ver para onde seu Git está apontando agora, digite:
-`git remote -v`
+```powershell
+git remote -v
+```
+*(O `-v` significa "verbose" / detalhado).*
+
+**O que deve aparecer:**
+Você verá duas linhas (uma para baixar/fetch e uma para enviar/push):
+```
+origin  https://github.com/SEU_USER/SEU_REPO.git (fetch)
+origin  https://github.com/SEU_USER/SEU_REPO.git (push)
+```
+Se aparecer isso, está tudo certo! O "apelido" **origin** está ligado corretamente ao seu link do GitHub.
+
+## 14. "Colei o link e deu erro!" (Como usar links)
+O terminal é como um robô que só entende verbos (comandos).
+Você não pode jogar o link solto lá. Ele vai dizer: "Não conheço esse comando".
+
+**Errado:**
+```powershell
+https://github.com/meu/projeto
+```
+
+**Certo:** (Você precisa dizer o que fazer com o link)
+- Quer baixar? `git clone https://...`
+- Quer conectar? `git remote add origin https://...`
+
+O link é sempre o **ingrediente**, nunca o **cozinheiro**.
 

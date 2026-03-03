@@ -1,3 +1,8 @@
-build
-MeuApp.spec
-dist
+build/
+dist/
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+*.spec
